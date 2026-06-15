@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(168, 85, 247, 0.15);
+    --glass-shadow: 0 8px 32px rgba(147, 51, 234, 0.08);
+    --gradient-start: #7E22CE;
+    --gradient-mid: #A855F7;
+    --gradient-end: #8B5CF6;
+  }
+  .dark {
+    --glass-bg: rgba(15, 13, 26, 0.8);
+    --glass-border: rgba(168, 85, 247, 0.2);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+  body {
+    @apply antialiased text-gray-900 dark:text-gray-100 transition-colors duration-300;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+@layer components {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+  .glass-card {
+    @apply glass rounded-2xl p-6 transition-all duration-300;
+  }
+  .glass-card:hover {
+    border-color: rgba(168, 85, 247, 0.3);
+    box-shadow: 0 12px 40px rgba(168, 85, 247, 0.12);
+  }
+  .gradient-bg {
+    background: linear-gradient(-45deg, #7E22CE, #A855F7, #8B5CF6, #6D28D9);
+    background-size: 400% 400%;
+    animation: gradient 8s ease infinite;
+  }
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-400 via-primary-500 to-accent-500;
+  }
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-600 to-primary-500 text-white font-semibold py-3 px-6 rounded-xl
+           hover:from-primary-700 hover:to-primary-600 transition-all duration-300
+           shadow-lg shadow-primary-500/25 hover:shadow-xl hover:shadow-primary-500/40
+           active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-white dark:bg-dark-800 text-primary-600 dark:text-primary-400 font-semibold py-3 px-6 rounded-xl
+           border-2 border-primary-200 dark:border-primary-800 hover:border-primary-400 dark:hover:border-primary-600
+           transition-all duration-300 active:scale-[0.98];
+  }
+  .btn-danger {
+    @apply bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold py-3 px-6 rounded-xl
+           hover:from-red-600 hover:to-red-700 transition-all duration-300
+           shadow-lg shadow-red-500/25 active:scale-[0.98];
+  }
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-primary-100 dark:border-dark-700
+           bg-white/50 dark:bg-dark-800/50 backdrop-blur-sm
+           text-gray-900 dark:text-gray-100
+           placeholder-gray-400 dark:placeholder-gray-500
+           focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500
+           transition-all duration-300;
+  }
+  .page-container {
+    @apply min-h-screen bg-gray-50 dark:bg-dark-950;
+  }
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-8 max-w-7xl mx-auto;
+  }
+  .status-pending {
+    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400;
+  }
+  .status-completed {
+    @apply bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400;
+  }
+  .status-failed {
+    @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400;
+  }
+  .status-cancelled {
+    @apply bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400;
+  }
+  .pin-dot {
+    @apply w-4 h-4 rounded-full border-2 border-primary-400 transition-all duration-200;
+  }
+  .pin-dot.filled {
+    @apply bg-primary-500 border-primary-500 scale-110;
+  }
+  .pin-input-box {
+    @apply w-12 h-14 text-center text-2xl font-bold rounded-xl border-2 border-primary-200
+           dark:border-primary-800 bg-white dark:bg-dark-800
+           focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/30
+           transition-all duration-200;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
