@@ -2,23 +2,28 @@
   "version": 2,
   "builds": [
     {
+      "src": "backend/wsgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    },
+    {
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "dist"
       }
-    },
-    {
-      "src": "backend/api/index.py",
-      "use": "@vercel/python"
     }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "backend/api/index.py" },
-    { "src": "/admin/(.*)", "dest": "backend/api/index.py" },
-    { "src": "/static/(.*)", "dest": "backend/api/index.py" },
-    { "src": "/assets/(.*)", "dest": "frontend/dist/assets/$1" },
-    { "src": "/favicon.svg", "dest": "frontend/dist/favicon.svg" },
-    { "src": "/(.*)", "dest": "frontend/dist/index.html" }
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/wsgi.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/$1"
+    }
   ]
 }
